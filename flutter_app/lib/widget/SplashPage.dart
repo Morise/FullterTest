@@ -3,7 +3,7 @@ import 'package:flutter_app/MainPage.dart';
 import 'package:flutter_app/utils/SharePreferenceUtils.dart';
 import 'package:flutter_app/utils/TextUtils.dart';
 
-void main()=> runApp(SplashPage());
+void main() => runApp(SplashPage());
 /*
  * @author jiangdongbo
  * 闪屏页
@@ -18,52 +18,51 @@ class SplashPage extends StatelessWidget {
   }
 }
 
-class SplashStatefulWidget extends StatefulWidget{
+class SplashStatefulWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _SplashHomeState();
   }
 }
 
-Image image;
-class _SplashHomeState extends State<SplashStatefulWidget>{
+class _SplashHomeState extends State<SplashStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    image = new Image(
-      color: Colors.transparent,
-    );
-    return image;
+    return new Image.asset("images/splash.jpg");
   }
 
   @override
   void initState() {
     super.initState();
 
-    if(!initSplash()){
-      goToMainPage();
-    }
+    initSplash();
   }
 
   //倒计时
-  void countDown(){
+  void countDown() {
     Duration _duration = new Duration(seconds: 3);
-    new Future.delayed(_duration,goToMainPage);
+    new Future.delayed(_duration, goToMainPage);
   }
 
   //页面跳转
-  void goToMainPage(){
+  void goToMainPage() {
     runApp(MainPage());
   }
 
   //获取闪屏图
-  bool initSplash(){
-    String splash = SharePreferenceUtils.getShowSplash();
-    if(TextUtils.isEmpty(splash)){
-      return false;
-    }
+  void initSplash() {
+    Future<String> splash = SharePreferenceUtils.getShowSplash();
+    splash.then((String splash){
+      if(TextUtils.isEmpty(splash)){
+        goToMainPage();
+        return;
+      }
 
-    return false;
+      countDown();
+
+    });
+
   }
 }
 

@@ -1,15 +1,15 @@
 import 'package:shared_preferences/shared_preferences.dart';
-
 class SharePreferenceUtils{
   static String SHOWSPLASH = "ShowSplash";
-  static SharedPreferences getSharedPreferences(){
-    return SharedPreferences.getInstance() as SharedPreferences;
-  }
-  static void setShowSplash(String splashPath){
-    getSharedPreferences().setString(SHOWSPLASH, splashPath);
+
+  static Future setShowSplash(String splashPath) async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(SHOWSPLASH, splashPath);
   }
 
-  static String getShowSplash(){
-    return getSharedPreferences().getString(SHOWSPLASH);
+  static Future<String> getShowSplash() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(SHOWSPLASH);
   }
+
 }
