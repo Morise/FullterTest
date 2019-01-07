@@ -1,0 +1,6 @@
+class LauncherUtils {
+
+  void loadLauncherPic(){
+
+  }
+}
