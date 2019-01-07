@@ -4,6 +4,7 @@ import 'package:flutter_app/utils/SharePreferenceUtils.dart';
 import 'package:flutter_app/utils/TextUtils.dart';
 
 void main() => runApp(SplashPage());
+
 /*
  * @author jiangdongbo
  * 闪屏页
@@ -25,11 +26,14 @@ class SplashStatefulWidget extends StatefulWidget {
   }
 }
 
-class _SplashHomeState extends State<SplashStatefulWidget> {
+Image image;
 
+class _SplashHomeState extends State<SplashStatefulWidget> {
   @override
   Widget build(BuildContext context) {
-    return new Image.asset("images/splash.jpg");
+    return new Scaffold(
+      body: image,
+    );
   }
 
   @override
@@ -53,16 +57,15 @@ class _SplashHomeState extends State<SplashStatefulWidget> {
   //获取闪屏图
   void initSplash() {
     Future<String> splash = SharePreferenceUtils.getShowSplash();
-    splash.then((String splash){
-      if(TextUtils.isEmpty(splash)){
+    splash.then((String splash) {
+      if (TextUtils.isEmpty(splash)) {
         goToMainPage();
         return;
       }
 
+      image = new Image.asset("images/splash.jpg");
+
       countDown();
-
     });
-
   }
 }
-

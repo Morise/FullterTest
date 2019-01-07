@@ -42,6 +42,16 @@ flutter:
   #  - images/a_dot_burr.jpeg
   assets:
   - images/splash.jpg
+  - images/icon_home_72_gray.png
+  - images/icon_home_72_green.png
+  - images/icon_kandian_72_gray.png
+  - images/icon_kandian_72_green.png
+  - images/icon_me_72_gray.png
+  - images/icon_me_72_green.png
+  - images/icon_rank_gray.png
+  - images/icon_rank_green.png
+  - images/icon_youxiquan_72_gray.png
+  - images/icon_youxiquan_72_green.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
